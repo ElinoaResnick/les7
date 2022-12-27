@@ -3,6 +3,8 @@ import { useState } from "react";
 
 
 function App() {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
   const [uList, setUlist] = useState(
     [
       {
@@ -237,9 +239,25 @@ function App() {
       }
     ]
   )
+  function handleName(e){
+    setName(e.target.value)
+  }
+  function handleEmail(e){
+    setEmail(e.target.value)
+  }
+
+  // console.log(uList)
+  function addItem(){
+    // setToDoList(toDoList.push(toDo))
+    setUlist([...uList, {"name":name, "email":email}])
+    console.log("ulist "+uList)
+  }
 
   return (
     <div className="App">
+      Name <input value={name} onChange = {handleName}/>
+      Email <input value={email} onChange = {handleEmail}/>
+      <button onClick={addItem}>add to table</button>
       <h3>Table of names and email</h3>
       <table id="table">
       <tr>
